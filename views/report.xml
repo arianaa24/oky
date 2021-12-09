@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="oky_account_invoice1"
+            string="Factura Oky"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="oky.reporte_account_invoice1"
+            name="oky.reporte_account_invoice1"
+        />
+
+    </data>
+</odoo>

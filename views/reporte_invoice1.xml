@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reporte_account_invoice1">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="20"/>
+            <t t-set="data_report_header_spacing" t-value="5"/>
+            <t t-foreach="docs" t-as="o">
+                <div class="article">
+                    <header>
+                        <div style='float:left'>
+                            <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)" style="width:100%"/>
+                            <center>
+                                <br/>
+                                <strong><span style="color:#4D2D94" t-field="o.company_id.name"/></strong><br/>
+                                <span style="color:#4D2D94" t-field="o.company_id.street"/> <span style="color:#4D2D94" t-field="o.company_id.street2"/>
+                                <span style="color:#4D2D94" t-field="o.company_id.city"/>, <span style="color:#4D2D94" t-if="o.company_id.state_id" t-field="o.company_id.state_id.code"/> <span style="color:#4D2D94" t-field="o.company_id.zip"/>
+                            </center>
+
+                        </div>
+                        <div style='float:right'>
+                            <table style="margin: 0px auto;">
+                                <tr>
+                                    <td colspan="2" style="vertical-align:middle;background-color:#4D2D94;color:white;text-align:center"><strong>INVOICE</strong></td>
+                                </tr>
+                                <tr style="background-color:#E4E4EC;color:#4D2D94;vertical-align:middle">
+                                    <td><strong>Invoice #:</strong></td>
+                                    <td><span t-field="o.number"/></td>
+                                </tr>
+                                <tr style="background-color:#E4E4EC;color:#4D2D94;vertical-align:middle">
+                                    <td><strong>Invoice Date:</strong></td>
+                                    <td><span t-esc="o.date_invoice.strftime('%B').upper()"/> <span t-esc="o.date_invoice.strftime('%d')"/>, <span t-esc="o.date_invoice.strftime('%Y')"/></td>
+                                </tr>
+
+                                <tr style="background-color:#E4E4EC;color:#4D2D94;vertical-align:middle">
+                                    <td><strong>Due Date:</strong></td>
+                                    <td><t t-if="o.date_due"><span t-esc="o.date_due.strftime('%B').upper()"/> <span t-esc="o.date_due.strftime('%d')"/>, <span t-esc="o.date_due.strftime('%Y')"/><br/></t></td>
+
+                                </tr>
+                                <tr style="background-color:#E4E4EC;height:0.25cm">
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr style="background-color:#E4E4EC;color:#4D2D94">
+                                    <td><strong>Customer Id#:</strong></td>
+                                    <td><span t-field="o.partner_id.ref"/></td>
+                                </tr>
+                                <tr style="background-color:#E4E4EC;color:#4D2D94">
+                                    <td><strong>Reference #:</strong></td>
+                                    <td><span t-field="o.reference"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="clear:both"/>
+                    </header>
+                    <div class="page">
+                        <div style="clear:both"/>
+                        <p style="height:2cm"/>
+                        <div style='float:left'>
+                            <table style="margin: 0px auto;color:#4D2D94">
+                                <tr>
+                                    <td style="vertical-align:middle"><strong>Customer:</strong></td>
+                                    <td style="vertical-align:middle"><span t-field="o.partner_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:middle"><strong>Address:</strong></td>
+                                    <td style="vertical-align:middle"><span t-field="o.partner_id.street"/> <span t-field="o.partner_id.street2"/><br/> <span t-field="o.partner_id.city"/> <span t-if="o.partner_id.state_id" t-field="o.partner_id.state_id.code"/> <span t-field="o.partner_id.zip"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="clear:both"/>
+                        <p style="height:0.25cm"/>
+                        <div style='float:left'>
+                            <table style="margin: 0px auto;color:#4D2D94">
+                                <tr>
+                                    <td style="vertical-align:middle"><strong>Phone:</strong></td>
+                                    <td style="vertical-align:middle"><span t-field="o.partner_id.phone"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:middle"><strong>Email:</strong></td>
+                                    <td style="vertical-align:middle"><span t-field="o.partner_id.email"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="clear:both"/>
+                        <p style="height:0.25cm"/>
+                        <table style="margin: 0px auto;width:100%">
+                            <tr style="background-color:#4D2D94;color:white;border: 1px solid #4D2D94;vertical-align:middle">
+                                <td style="text-align:center"><strong>Quantity</strong></td>
+                                <td style="text-align:center"><strong>Description</strong></td>
+                                <td style="text-align:center"><strong>Unit Price</strong></td>
+                                <td style="text-align:center"><strong>Total</strong></td>
+                            </tr>
+                            <t t-foreach="o.invoice_line_ids" t-as="linea">
+                                <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle"><span t-field="linea.quantity"/></td>
+                                <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle"><span t-field="linea.name"/></td>
+                                <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle;text-align:right"><span t-field="linea.price_unit"/></td>
+                                <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle;text-align:right"><span t-field="linea.price_total"/></td>
+                            </t>
+                            <tr style="color:#4D2D94">
+                                <td></td>
+                                <td></td>
+                                <td style="border: 1px solid #4D2D94;vertical-align:middle"><strong>Sales Tax</strong></td>
+                                <td style="border: 1px solid #4D2D94;vertical-align:middle;text-align:right"><span t-field="o.amount_tax"/></td>
+                            </tr>
+                            <tr style="color:#4D2D94">
+                                <td></td>
+                                <td></td>
+                                <td style="border: 1px solid #4D2D94;vertical-align:middle"><strong>Subtotal</strong></td>
+                                <td style="border: 1px solid #4D2D94;vertical-align:middle;text-align:right"><span t-field="o.amount_untaxed"/></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td style="border: 1px solid #4D2D94;color:white;background-color:#4D2D94;vertical-align:middle"><strong>Total</strong></td>
+                                <td style="border: 1px solid #4D2D94;color:#4D2D94;vertical-align:middle;text-align:right"><strong><span t-field="o.amount_total"/></strong></td>
+                            </tr>
+                        </table>
+
+                        <br/>
+                        <p style="height:0.25cm"/>
+                        <strong style="color:#4D2D94">Total Due:</strong> <span style="color:#4D2D94" t-esc="o.currency_id.amount_to_text(o.amount_total)"/> <br/>
+                        <p style="height:0.25cm"/>
+                        <p style="color:#4D2D94"><strong>If you have any questions concerning this invoice, please contact:</strong></p>
+                        <div style="clear:both"/>
+                        <div style='float:left;color:#4D2D94'>
+                            <table style="margin: 0px auto;width:150%">
+                                <tr>
+                                    <td><strong>Name:</strong></td>
+                                    <td><span t-field="o.user_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone:</strong></td>
+                                    <td><span t-field="o.user_id.mobile"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td><span t-field="o.user_id.login"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="clear:both"/>
+                        <p style="height:0.25cm"/>
+                        <h6 style=" color:#4D2D94;border-bottom: 1px solid #000;line-height: 0.1em;line-width:5px;margin: 10px 0 20px;"><span style="background:#fff;padding:0 10px;color:#4D2D94"><strong>PREFERRED METHODS OF PAYMENT</strong></span></h6>
+                        <p style="height:0.25cm"/>
+                        <div style="float: left;color:#4D2D94">ZELLE<br/>
+                            okypay@okyapp.com
+
+                        </div>
+                        <div style="float: right;color:#4D2D94">
+                          ACH WELLS FARGO<br/>
+                          Bank: Wells Fargo<br/>
+                          Routing: 06317513<br/>
+                          Acct. Number: 9202898780<br/>
+                          Beneficiary: Merkado Services LLC<br/>
+
+                        </div>
+                        <div style="margin: 0 auto; width: 200px;color:#4D2D94">
+                            ACH CHASE<br/>
+                            Bank: JP Morgan Chase<br/>
+                            Routing: 267084131<br/>
+                            Acct. Number: 399023321<br/>
+                            Beneficiary: Merkado Services LLC<br/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
