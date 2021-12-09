@@ -90,10 +90,12 @@
                                 <td style="text-align:center"><strong>Total</strong></td>
                             </tr>
                             <t t-foreach="o.invoice_line_ids" t-as="linea">
-                                <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle"><span t-field="linea.quantity"/></td>
-                                <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle"><span t-field="linea.name"/></td>
-                                <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle;text-align:right"><span t-field="linea.price_unit"/></td>
-                                <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle;text-align:right"><span t-field="linea.price_total"/></td>
+                                <tr>
+                                    <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle"><span t-field="linea.quantity"/></td>
+                                    <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle"><span t-field="linea.name"/></td>
+                                    <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle;text-align:right"><span t-field="linea.price_unit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+                                    <td style="color:#4D2D94;border: 1px solid #4D2D94;vertical-align:middle;text-align:right"><span t-field="linea.price_total"/></td>
+                                </tr>
                             </t>
                             <tr style="color:#4D2D94">
                                 <td></td>
@@ -138,9 +140,9 @@
                             </table>
                         </div>
                         <div style="clear:both"/>
-                        <p style="height:0.25cm"/>
+                        <p style="height:0.15cm"/>
                         <h6 style=" color:#4D2D94;border-bottom: 1px solid #000;line-height: 0.1em;line-width:5px;margin: 10px 0 20px;"><span style="background:#fff;padding:0 10px;color:#4D2D94"><strong>PREFERRED METHODS OF PAYMENT</strong></span></h6>
-                        <p style="height:0.25cm"/>
+                        <p style="height:0.15cm"/>
                         <div style="float: left;color:#4D2D94">ZELLE<br/>
                             okypay@okyapp.com
 
