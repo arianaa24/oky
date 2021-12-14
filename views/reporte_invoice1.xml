@@ -78,12 +78,12 @@
                         <p style="height:0.25cm"/>
                         <style>
                           table th:first-child{
-border-radius:15px 0 0 0px;
-}
+                              border-radius:15px 0 0 0px;
+                          }
 
-table th:last-child{
-border-radius:0 15px 0px 0;
-}
+                          table th:last-child{
+                              border-radius:0 15px 0px 0;
+                          }
                         </style>
                         <table style="margin: 0px auto;width:100%;">
                             <tr style="background-color:#4D2D94;color:white;vertical-align:middle;">
@@ -122,7 +122,7 @@ border-radius:0 15px 0px 0;
 
                         <br/>
                         <p style="height:0.25cm"/>
-                        <strong style="color:#4D2D94">Total Due:</strong> <span style="color:#4D2D94" t-esc="o.partner_id.currency_id.amount_to_text(o.amount_total)"/> <br/>
+                        <strong style="color:#4D2D94">Total Due:</strong> <span style="color:#4D2D94" t-esc="o.partner_id.currency_id.with_context({'lang': o.partner_id.lang}).amount_to_text(o.amount_total)"/> <br/>
                         <p style="height:0.25cm"/>
                         <p style="color:#4D2D94"><strong>If you have any questions concerning this invoice, please contact:</strong></p>
                         <div style="clear:both"/>
