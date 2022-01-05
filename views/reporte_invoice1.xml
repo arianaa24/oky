@@ -2,8 +2,8 @@
 <odoo>
     <template id="reporte_account_invoice1">
         <t t-call="web.html_container">
-            <t t-set="data_report_margin_top" t-value="20"/>
-            <t t-set="data_report_header_spacing" t-value="5"/>
+            <t t-set="data_report_margin_top" t-value="10"/>
+            <t t-set="data_report_header_spacing" t-value="1"/>
             <t t-foreach="docs" t-as="o">
                 <div class="article">
                     <header>
@@ -61,7 +61,7 @@
                     </header>
                     <div class="page">
                         <div style="clear:both"/>
-                        <p style="height:2cm"/>
+                        <p style="height:0.1cm"/>
                         <!-- <div style='float:left;width:40%'> -->
                             <table style="width:50%;color:#4D2D94; font-size: 115%">
                                 <tr>
@@ -93,7 +93,7 @@
                               border-radius:0 15px 0px 0;
                           }
                         </style>
-                        <table style="margin: 0px auto;width:100%;">
+                        <table style="margin: 0px auto 0px;width:100%;">
                             <tr style="background-color:#4D2D94;color:white;vertical-align:middle;">
                                 <th style="text-align:center; padding-top: 3px; padding-bottom: 3px;"><strong>Quantity</strong></th>
                                 <th style="text-align:center; padding-top: 3px; padding-bottom: 3px;"><strong>Description</strong></th>
@@ -128,8 +128,7 @@
                             </tr>
                         </table>
 
-                        <br/>
-                        <p style="height:0.25cm"/>
+                        <p style="height:0.1cm"/>
                         <strong style="color:#4D2D94">Total Due:</strong> <span style="color:#4D2D94" t-esc="o.partner_id.currency_id.with_context({'lang': o.partner_id.lang}).amount_to_text(o.amount_total)"/> <br/>
                         <p style="height:0.25cm"/>
                         <p style="color:#4D2D94"><strong>If you have any questions concerning this invoice, please contact:</strong></p>
@@ -151,7 +150,7 @@
                             </table>
                         </div>
                         <div style="clear:both"/>
-                        <p style="height:1.15cm"/>
+                        <p style="height:0.5cm"/>
                         <div style="font-size: 80%">
                             <h6 style=" color:#4D2D94;border-bottom: 1px solid #4D2D94;line-height: 0.1em;line-width:5px;margin: 20px 0 20px;"><span style="background:#fff;padding:0 1px;color:#4D2D94"><strong>PREFERRED METHODS OF PAYMENT</strong></span></h6>
                             <p style="height:0.15cm"/>
@@ -181,3 +180,4 @@
         </t>
     </template>
 </odoo>
+
