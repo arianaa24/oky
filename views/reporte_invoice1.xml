@@ -126,6 +126,29 @@
                                 <td style="border: 1px solid #4D2D94;color:white;background-color:#4D2D94;vertical-align:middle;text-align:center; padding-top: 3px; padding-bottom: 3px;"><strong>Total Due</strong></td>
                                 <td style="border: 1px solid #4D2D94;color:#4D2D94;vertical-align:middle;text-align:right;padding-right:3px; padding-top: 3px; padding-bottom: 3px;"><strong><span t-field="o.amount_total"/></strong></td>
                             </tr>
+                            <t t-set="payments_vals" t-value="o._get_payments_vals()"/>
+                            <t t-foreach="payments_vals" t-as="payment_vals">
+                                <tr style="color:#4D2D94">
+                                    <td></td>
+                                    <td></td>
+                                    <td style="border: 1px solid #4D2D94;vertical-align:middle;text-align:center;padding-right:3px; padding-top: 3px; padding-bottom: 3px;">
+                                        Paid on <t t-esc="payment_vals['date']" t-options='{"widget": "date"}'/>
+                                    </td>
+                                    <td style="border: 1px solid #4D2D94;vertical-align:middle;text-align:right;padding-right:3px; padding-top: 3px; padding-bottom: 3px;">
+                                        <span t-esc="payment_vals['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <t t-if="len(payments_vals) > 0">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="border: 1px solid #4D2D94;color:white;background-color:#4D2D94;vertical-align:middle;text-align:center; padding-top: 3px; padding-bottom: 3px;"><strong>Amount Due</strong></td>
+                                    <td style="border: 1px solid #4D2D94;color:#4D2D94;vertical-align:middle;text-align:right;padding-right:3px; padding-top: 3px; padding-bottom: 3px;">
+                                         <span t-field="o.residual"/>
+                                    </td>
+                                </tr>
+                            </t>
                         </table>
 
                         <p style="height:0.1cm"/>
