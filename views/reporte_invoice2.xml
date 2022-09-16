@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reporte_account_invoice2">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="10"/>
+            <t t-set="data_report_header_spacing" t-value="1"/>
+            <t t-foreach="docs" t-as="o">
+                <div class="article">
+                    <header>
+                        <div style='float:left'>
+                            <center>
+                                <img src='/oky/static/src/img/oky-redondo-violeta.png' style="max-width: 200px;"/>
+                            </center>
+                        </div>
+                        <div style='float:right;width:60%'>
+                            <table style="margin: 0px auto;border-collapse: collapse;width: 100%;border-radius: 0px;overflow: hidden;">
+                                <tr>
+                                    <td colspan="2" style="vertical-align:middle;text-align:right; padding-top: 3px; padding-bottom: 3px;">
+									  <span style="font-size: 48px">FACTURA</span><br/>
+										Lubisa Honduras, S.A. de C.V.<br/>
+										Colonia Lomas del Guijarro, Avenida Republica Dominicana, Edificio Torre Alfa Nivel 3, Local 302,<br/>
+										Correo: hnpineda@hotmail.com<br/>
+										Tegucigalpa, M.D.C. Tel: (504) 2232-0183, Francisco Morazan<br/>
+										Honduras
+										<br/>
+									</td>
+                                </tr>
+                            </table>
+                        </div>
+						<div style="color:#CCCCCC">__________________________________________________________________________________________________</div>
+                        <div style="clear:both"/>
+                    </header>
+                    <div class="page">
+						<t t-set="isv_por_cobrar" t-value="impuestos(o)['isv_por_cobrar']"/>
+						<br/><br/>
+						<table style="width:100%;">
+						  <tr style="text-align:left;">
+							<td style="width:60%;">
+								<span style="color:#CCCCCC;">BILL TO</span><br/>
+								<span t-field="o.partner_id.name"/><br/>
+								<span t-field="o.partner_id.street"/> <span t-field="o.partner_id.street2"/><br/> 
+								<span t-field="o.partner_id.city"/> <br/>
+								<span t-if="o.partner_id.country_id" t-field="o.partner_id.country_id.name"/><br/> 
+							</td>
+							<td>
+								<table style="width:100%;">
+								  <tr style="text-align:right;">
+									<td>
+										<b>Invoice Number:</b> <span t-field="o.number"/><br/>
+									</td>
+								  </tr>
+								  <tr style="text-align:right;">
+									<td>
+										<b>Invoice Date:</b> <span t-field="o.date_invoice"/><br/>
+									</td>
+								  </tr>
+								  <tr style="text-align:right;">
+									<td>
+										<b>Payment Due:</b> <span t-field="o.date_due"/><br/>
+									</td>
+								  </tr>
+								  <tr style="text-align:right;background-color:#CCCCC;">
+									<td>
+										<b>Amount Due (USD): <span t-field="o.amount_total" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></b><br/>
+									</td>
+								  </tr>
+								</table>
+							</td>
+						  </tr>
+						</table>
+						<br/>
+						<t t-set="valor_cero" t-value="0"/>
+                        <table style="margin: 0px auto 0px;width:100%;">
+                            <tr style="background-color:#000000;color:white;vertical-align:middle;">
+                                <th style="text-align:center; padding-top: 3px; padding-bottom: 3px;"><strong>Servicios</strong></th>
+                                <th style="text-align:center; padding-top: 3px; padding-bottom: 3px;"><strong>Cantidad</strong></th>
+                                <th style="text-align:center; padding-top: 3px; padding-bottom: 3px;"><strong>Precio</strong></th>
+                                <th style="text-align:center; padding-top: 3px; padding-bottom: 3px;"><strong>Monto</strong></th>
+                            </tr>
+                            <t t-foreach="o.invoice_line_ids" t-as="linea">
+                                <tr>
+                                    <td style="text-align:left; padding-top: 3px; padding-bottom: 3px;"><span t-field="linea.name"/></td>
+                                    <td style="text-align:center; padding-top: 3px; padding-bottom: 3px;"><span t-esc="int(linea.quantity)"/></td>
+                                    <td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="linea.price_subtotal / int(linea.quantity)" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+                                    <td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-field="linea.price_subtotal"/></td>
+                                </tr>
+                            </t>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;">Rebajas y Descuentos Otorgados</td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;">0</td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;">Importe Exento</td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;">0</td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;">Importe Exonerado</td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;">0</td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;">Importe Gravado 18%</td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;">0</td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td style="color:#CCCCCC;" colspan="4">____________________________________________________________________________________________________</td>
+							</tr>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><b>Subtotal:</b></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.amount_untaxed" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;">ISV- 15%:</td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="isv_por_cobrar" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;">ISV - 18%:</td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td style="color:#CCCCCC;text-align:right;" colspan="2">________________________________</td>
+							</tr>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><b>Total:</b></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.amount_total" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td style="color:#CCCCCC;text-align:right;" colspan="2">________________________________</td>
+							</tr>
+							<tr>
+								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;"></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><b>Amount Due (USD):</b></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.residual" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+                        </table>
+						<div>
+						    <br/><br/>
+							<b>Notes / Terms</b><br/>
+							<span t-esc="a_letras.num_a_letras(o.amount_total)"/> (Equivalentes a L. <span t-esc="tipo_cambio(o)"/> tipo de cambio L. <span t-esc="tipo_cambio(o)"/> x US$ 1)<br/>
+							RTN 08019022375280 CAI: <span t-field="o.journal_id.cai"/> Fecha limite emisión: <span t-field="o.journal_id.fecha_limite"/><br/>
+							Rango Autorizado: Inicial <span t-field="o.journal_id.numero_desde"/> Final: <span t-field="o.journal_id.numero_hasta"/><br/>
+							No. Correlativo de orden de Compra exenta:_________<br/>
+							No. Correlativo de Constancia de registro exonerado:___<br/>
+							No. Identificación del registro de la SAG______________<br/>
+						</div>
+						<table style="width:100%">
+						  <tr style="color:#CCCCCC;text-align:center;">
+						    <td style="width:50%">Original: Cliente</td>
+						    <td style="width:50%">Copia: Obligado Tributario</td>
+						  </tr>
+						</table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
