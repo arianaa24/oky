@@ -17,7 +17,9 @@
     'depends': ['base','account'],
 
     'data': [
+        'views/account_view.xml',
         'views/report.xml',
         'views/reporte_invoice1.xml',
+        'views/reporte_invoice2.xml',
     ],
 }
