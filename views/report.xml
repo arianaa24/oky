@@ -11,5 +11,14 @@
             name="oky.reporte_account_invoice1"
         />
 
+        <report
+            id="oky_account_invoice2"
+            string="Factura Honduras"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="oky.reporte_account_invoice2"
+            name="oky.reporte_account_invoice2"
+        />
+
     </data>
 </odoo>
