@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reporte_account_invoice3">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="10"/>
+            <t t-set="data_report_header_spacing" t-value="1"/>
+            <t t-foreach="docs" t-as="o">
+                <div class="article">
+                    <div class="page">
+						<t t-set="isv_por_cobrar" t-value="impuestos(o)['isv_por_cobrar']"/>
+						<br/><br/>
+						<table style="width:100%;">
+						  <tr style="text-align:left;">
+							<td style="width:60%;">
+								<span style="color:#CCCCCC;">BILL TO</span><br/>
+								<span t-field="o.partner_id.name"/><br/>
+								<span t-field="o.partner_id.street"/> <span t-field="o.partner_id.street2"/><br/> 
+								<span t-field="o.partner_id.city"/> <br/>
+								<span t-if="o.partner_id.country_id" t-field="o.partner_id.country_id.name"/><br/> 
+							</td>
+							<td>
+								<table style="width:100%;">
+								  <tr style="text-align:right;">
+									<td>
+										<b>Numero factura:</b> <span t-field="o.number"/><br/>
+									</td>
+								  </tr>
+								  <tr style="text-align:right;">
+									<td>
+										<b>Fecha factura:</b> <span t-field="o.date_invoice"/><br/>
+									</td>
+								  </tr>
+								</table>
+							</td>
+						  </tr>
+						</table>
+						<br/>
+						<t t-set="valor_cero" t-value="0"/>
+                        <table style="margin: 0px auto 0px;width:100%;">
+                            <tr style="vertical-align:middle;">
+                                <th style="text-align:center;"><strong>Servicios</strong></th>
+                                <th style="text-align:center;"><strong>Cantidad</strong></th>
+                                <th style="text-align:center;"><strong>Precio</strong></th>
+                                <th style="text-align:center;"><strong>Monto</strong></th>
+                            </tr>
+                            <t t-foreach="o.invoice_line_ids" t-as="linea">
+                                <tr>
+                                    <td style="text-align:left;"><span t-field="linea.name"/></td>
+                                    <td style="text-align:center;"><span t-esc="int(linea.quantity)"/></td>
+                                    <td style="text-align:right;"><span t-esc="linea.price_subtotal / int(linea.quantity)" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+                                    <td style="text-align:right;"><span t-field="linea.price_subtotal"/></td>
+                                </tr>
+                            </t>
+							<tr>
+								<td style="color:#CCCCCC;" colspan="4">____________________________________________________________________________________________________</td>
+							</tr>
+							<tr>
+								<td style="text-align:left;"></td>
+								<td style="text-align:center;"></td>
+								<td style="text-align:right;"><b>Subtotal:</b></td>
+								<td style="text-align:right;"><span t-field="o.amount_untaxed" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td style="text-align:left;"></td>
+								<td style="text-align:center;"></td>
+								<td style="text-align:right;">ISV- 15%:</td>
+								<td style="text-align:right;"><span t-esc="isv_por_cobrar" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td style="text-align:left;"></td>
+								<td style="text-align:center;"></td>
+								<td style="text-align:right;">ISV - 18%:</td>
+								<td style="text-align:right;"><span t-esc="valor_cero" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td style="color:#CCCCCC;text-align:right;" colspan="2">________________________________</td>
+							</tr>
+							<tr>
+								<td style="text-align:left;"></td>
+								<td style="text-align:center;"></td>
+								<td style="text-align:right;"><b>Total:</b></td>
+								<td style="text-align:right;"><span t-field="o.amount_total" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+							</tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
