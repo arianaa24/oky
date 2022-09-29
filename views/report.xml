@@ -20,5 +20,14 @@
             name="oky.reporte_account_invoice2"
         />
 
+        <report
+            id="oky_account_invoice3"
+            string="Factura El Salvador"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="oky.reporte_account_invoice3"
+            name="oky.reporte_account_invoice3"
+        />
+
     </data>
 </odoo>
