@@ -22,5 +22,7 @@
         'views/reporte_invoice1.xml',
         'views/reporte_invoice2.xml',
         'views/reporte_invoice3.xml',
+        'views/reporte_invoice4.xml',
+        'views/reporte_invoice5.xml',
     ],
 }
