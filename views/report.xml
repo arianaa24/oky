@@ -29,5 +29,23 @@
             name="oky.reporte_account_invoice3"
         />
 
+        <report
+            id="oky_account_invoice4"
+            string="Factura crédito fiscal El Salvador"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="oky.reporte_account_invoice4"
+            name="oky.reporte_account_invoice4"
+        />
+
+        <report
+            id="oky_account_invoice5"
+            string="Nota de crédito El Salvador"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="oky.reporte_account_invoice5"
+            name="oky.reporte_account_invoice5"
+        />
+
     </data>
 </odoo>
