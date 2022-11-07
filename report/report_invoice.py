@@ -22,19 +22,27 @@ class ReportAbstractInvoice(models.AbstractModel):
     def impuestos(self, factura):
         isv_por_pagar = 0
         isv_por_cobrar = 0
-        isv_18 = 0
+        iva_retenido = 0
+        sujeto_no_excluido = 0
+        isv_10 = 0
         for tax in factura.tax_line_ids:
-            if tax.name == 'ISV por Cobrar':
+            if tax.name == 'ISV por Cobrar' or tax.name == 'IVA por Cobrar':
                 isv_por_pagar += tax.amount
-            elif tax.name == 'ISV por Pagar':
+            elif tax.name == 'ISV por Pagar' or tax.name == 'IVA por Pagar':
                 isv_por_cobrar += tax.amount
+            elif tax.name == '(-) IVA Retenido':
+                iva_retenido += tax.amount
+            elif tax.name == 'Sujeto No Excluido':
+                sujeto_no_excluido += tax.amount
             elif tax.name == 'ISR 10%':
-                isv_18 += tax.amount
+                isv_10 += tax.amount
 
         dict = {
             'isv_por_pagar': isv_por_pagar,
             'isv_por_cobrar': isv_por_cobrar,
-            'isv_18': isv_18,
+            'iva_retenido': iva_retenido,
+            'sujeto_no_excluido': sujeto_no_excluido,
+            'isv_10': isv_10,
         }
         return dict
 
