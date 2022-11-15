@@ -27,9 +27,9 @@ class ReportAbstractInvoice(models.AbstractModel):
         isr_10 = 0
         for tax in factura.tax_line_ids:
             if tax.name == 'ISV por Cobrar' or tax.name == 'IVA por Cobrar':
-                isv_por_pagar += tax.amount
-            elif tax.name == 'ISV por Pagar' or tax.name == 'IVA por Pagar':
                 isv_por_cobrar += tax.amount
+            elif tax.name == 'ISV por Pagar' or tax.name == 'IVA por Pagar':
+                isv_por_pagar += tax.amount
             elif tax.name == '(-) IVA Retenido':
                 iva_retenido += tax.amount
             elif tax.name == 'Sujeto No Excluido':
@@ -77,3 +77,15 @@ class ReportInvoice3(models.AbstractModel):
     _inherit = 'oky.abstract.reporte_account_invoice'
 
     nombre_reporte = 'oky.reporte_account_invoice3'
+
+class ReportInvoice4(models.AbstractModel):
+    _name = 'report.oky.reporte_account_invoice4'
+    _inherit = 'oky.abstract.reporte_account_invoice'
+
+    nombre_reporte = 'oky.reporte_account_invoice4'
+
+class ReportInvoice5(models.AbstractModel):
+    _name = 'report.oky.reporte_account_invoice5'
+    _inherit = 'oky.abstract.reporte_account_invoice'
+
+    nombre_reporte = 'oky.reporte_account_invoice5'
