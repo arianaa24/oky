@@ -47,5 +47,14 @@
             name="oky.reporte_account_invoice5"
         />
 
+        <report
+            id="oky_account_invoice6"
+            string="Factura consumidor final"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="oky.reporte_account_invoice6"
+            name="oky.reporte_account_invoice6"
+        />
+
     </data>
 </odoo>
