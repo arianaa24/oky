@@ -25,5 +25,6 @@
         'views/reporte_invoice3.xml',
         'views/reporte_invoice4.xml',
         'views/reporte_invoice5.xml',
+        'views/reporte_invoice6.xml',
     ],
 }

@@ -89,3 +89,9 @@ class ReportInvoice5(models.AbstractModel):
     _inherit = 'oky.abstract.reporte_account_invoice'
 
     nombre_reporte = 'oky.reporte_account_invoice5'
+
+class ReportInvoice6(models.AbstractModel):
+    _name = 'report.oky.reporte_account_invoice6'
+    _inherit = 'oky.abstract.reporte_account_invoice'
+
+    nombre_reporte = 'oky.reporte_account_invoice6'
