@@ -7,7 +7,70 @@
             <t t-foreach="docs" t-as="o">
                 <div class="article">
                     <div class="page">
-						Factura consumidor final
+			<div style="position: absolute; top: 5.4cm; left: 4cm; font-size: 90%; width: 12cm">
+                        <span t-field="o.partner_id.name"/>
+                        </div>
+						            <div style="position: absolute; top: 6.2cm; left: 4cm; font-size: 90%; width: 11cm">
+                        <span t-field="o.partner_id.street"/>
+                        </div>
+                        
+                        
+                       <div style="font-size: 100%; position: absolute; top: 5.4cm; left: 17cm">
+                            <span t-esc="o.date_invoice.day"/> de <span t-esc="a_letras.mes_a_letras(o.date_invoice.month)"/> de <span t-esc="o.date_invoice.year"/>
+                        </div>
+                        <div style="position: absolute; top: 6.2cm; left: 19cm; font-size: 90; width: 5cm">
+                            <t t-if="o.partner_id.vat"><span t-field="o.partner_id.vat"/></t><t t-else=""><span t-field="o.partner_id.cui"/></t>
+                        </div>
+                        
+                        <div style="position: absolute; top: 9.2cm; left: 2cm; font-size: 90%">
+                          <table>
+                                <tr t-foreach="o.invoice_line_ids" t-as="l">
+                                    <td style="text-align:right; width: 1.7cm">
+                                    <span t-field="l.quantity" t-options="{'widget': 'float', 'precision': 0}"/>
+                                    </td>
+                                    <td style="width: 0.6cm"/>
+                                    <td style="width: 0.3cm"/>
+                                    <td style="text-align:left; width: 8.8cm">
+                                      <span t-esc="l.name"/>
+                                    </td>
+                                    <td style="width: 0.3cm"/>
+                                    <td style="text-align:right; width: 2.3cm">
+                                    <span t-esc="l.price_subtotal*1.13" t-options="{'widget': 'float', 'precision': 2}"/>
+                                    </td>
+                                    <td style="width: 0.3cm"/>
+                                    <td style="width: 2.3cm"/>
+                                    <td style="width: 0.3cm"/>
+                                    <td style="width: 2.3cm"/>
+                                    <td style="width: 0.3cm"/>
+                                    <td style="text-align:right; width: 2.3cm"><span t-esc="l.price_subtotal*1.13" t-options="{'widget': 'float', 'precision': 2}"/>
+                                    </td>
+                                    <td style="width: 0.3cm"/>
+                                </tr>
+                        </table>
+                      </div>
+                      <t t-set="isv_por_pagar" t-value="impuestos(o)['isv_por_pagar']"/>
+                      <t t-set="isv_por_cobrar" t-value="impuestos(o)['isv_por_cobrar']"/>
+                      <t t-set="iva_retenido" t-value="impuestos(o)['iva_retenido']"/>
+                      <t t-set="sujeto_no_excluido" t-value="impuestos(o)['sujeto_no_excluido']"/>
+                      <t t-set="isr_10" t-value="impuestos(o)['isr_10']"/>
+                      <div style="font-size: 74%; text-transform: uppercase; position: absolute; top: 24cm; left: 2cm; width: 13cm; font-weight:bold">
+                            <span t-esc="a_letras.num_a_letras(o.amount_total)"/>
+                        </div>
+                        
+                        <div style="position: absolute; top: 23.4cm; left: 22cm; font-size: 75%; font-weight:bold">
+                            <span t-esc="o.amount_untaxed+isv_por_pagar" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                        </div>
+                        <div style="position: absolute; top: 24.2cm; left: 22cm; font-size: 75%; font-weight:bold">
+                           <span t-esc="iva_retenido" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                        </div>
+                        
+                        <div style="position: absolute; top: 25.5cm; left: 22cm; font-size: 75%; font-weight:bold">
+                            <span t-esc="o.amount_untaxed+isv_por_pagar" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                        </div>
+                        
+                        <div style="position: absolute; top: 27.8cm; left: 22cm; font-size: 75%; font-weight:bold">
+                            <span t-esc="o.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                        </div>
                     </div>
                 </div>
             </t>
