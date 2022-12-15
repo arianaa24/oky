@@ -49,7 +49,7 @@
 
         <report
             id="oky_account_invoice6"
-            string="Factura consumidor final"
+            string="Factura Salvador"
             model="account.invoice"
             report_type="qweb-pdf"
             file="oky.reporte_account_invoice6"
