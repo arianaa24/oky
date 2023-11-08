@@ -5,7 +5,7 @@
         <report
             id="oky_account_invoice1"
             string="Factura Oky"
-            model="account.invoice"
+            model="account.move"
             report_type="qweb-pdf"
             file="oky.reporte_account_invoice1"
             name="oky.reporte_account_invoice1"
@@ -14,7 +14,7 @@
         <report
             id="oky_account_invoice2"
             string="Factura Honduras"
-            model="account.invoice"
+            model="account.move"
             report_type="qweb-pdf"
             file="oky.reporte_account_invoice2"
             name="oky.reporte_account_invoice2"
@@ -23,7 +23,7 @@
         <report
             id="oky_account_invoice3"
             string="Factura El Salvador"
-            model="account.invoice"
+            model="account.move"
             report_type="qweb-pdf"
             file="oky.reporte_account_invoice3"
             name="oky.reporte_account_invoice3"
@@ -32,7 +32,7 @@
         <report
             id="oky_account_invoice4"
             string="Factura crédito fiscal El Salvador"
-            model="account.invoice"
+            model="account.move"
             report_type="qweb-pdf"
             file="oky.reporte_account_invoice4"
             name="oky.reporte_account_invoice4"
@@ -41,7 +41,7 @@
         <report
             id="oky_account_invoice5"
             string="Nota de crédito El Salvador"
-            model="account.invoice"
+            model="account.move"
             report_type="qweb-pdf"
             file="oky.reporte_account_invoice5"
             name="oky.reporte_account_invoice5"
@@ -50,7 +50,7 @@
         <report
             id="oky_account_invoice6"
             string="Factura Salvador"
-            model="account.invoice"
+            model="account.move"
             report_type="qweb-pdf"
             file="oky.reporte_account_invoice6"
             name="oky.reporte_account_invoice6"

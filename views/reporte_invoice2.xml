@@ -46,17 +46,17 @@
 								<table style="width:100%;">
 								  <tr style="text-align:right;">
 									<td>
-										<b>Invoice Number:</b> <span t-field="o.number"/><br/>
+										<b>Invoice Number:</b> <span t-field="o.name"/><br/>
 									</td>
 								  </tr>
 								  <tr style="text-align:right;">
 									<td>
-										<b>Invoice Date:</b> <span t-field="o.date_invoice"/><br/>
+										<b>Invoice Date:</b> <span t-field="o.invoice_date"/><br/>
 									</td>
 								  </tr>
 								  <tr style="text-align:right;">
 									<td>
-										<b>Payment Due:</b> <span t-field="o.date_due"/><br/>
+										<b>Payment Due:</b> <span t-field="o.invoice_date_due"/><br/>
 									</td>
 								  </tr>
 								  <tr style="text-align:right;background-color:#CCCCC;">
@@ -150,13 +150,13 @@
 								<td style="text-align:left; padding-top: 3px; padding-bottom: 3px;"></td>
 								<td style="text-align:center; padding-top: 3px; padding-bottom: 3px;"></td>
 								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><b>Amount Due (USD):</b></td>
-								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.residual" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
+								<td style="text-align:right; padding-top: 3px; padding-bottom: 3px;"><span t-field="o.amount_residual" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></td>
 							</tr>
                         </table>
 						<div>
 						    <br/><br/>
 							<b>Notes / Terms</b><br/>
-							<span t-esc="a_letras.num_a_letras(o.amount_total)"/> (Equivalentes a L. <span t-esc="tipo_cambio(o)"/> tipo de cambio L. <span t-esc="tipo_cambio(o)"/> x US$ 1)<br/>
+							<span t-esc="a_letras(o.amount_total)"/> (Equivalentes a L. <span t-esc="tipo_cambio(o)"/> tipo de cambio L. <span t-esc="tipo_cambio(o)"/> x US$ 1)<br/>
 							RTN 08019022375280 CAI: <span t-field="o.journal_id.cai"/> Fecha limite emisión: <span t-field="o.journal_id.fecha_limite"/><br/>
 							Rango Autorizado: Inicial <span t-field="o.journal_id.numero_desde"/> Final: <span t-field="o.journal_id.numero_hasta"/><br/>
 							No. Correlativo de orden de Compra exenta:_________<br/>

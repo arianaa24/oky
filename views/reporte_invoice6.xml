@@ -16,7 +16,7 @@
                         
                         
                        <div style="font-size: 100%; position: absolute; top: 5.4cm; left: 17cm">
-                            <span t-esc="o.date_invoice.day"/> de <span t-esc="a_letras.mes_a_letras(o.date_invoice.month)"/> de <span t-esc="o.date_invoice.year"/>
+                            <span t-esc="o.invoice_date.day"/> de <span t-esc="a_letras(o.invoice_date.month)"/> de <span t-esc="o.invoice_date.year"/>
                         </div>
                         <div style="position: absolute; top: 6.2cm; left: 19cm; font-size: 90; width: 5cm">
                             <t t-if="o.partner_id.vat"><span t-field="o.partner_id.vat"/></t><t t-else=""><span t-field="o.partner_id.cui"/></t>
@@ -54,7 +54,7 @@
                       <t t-set="sujeto_no_excluido" t-value="impuestos(o)['sujeto_no_excluido']"/>
                       <t t-set="isr_10" t-value="impuestos(o)['isr_10']"/>
                       <div style="font-size: 74%; text-transform: uppercase; position: absolute; top: 24cm; left: 2cm; width: 13cm; font-weight:bold">
-                            <span t-esc="a_letras.num_a_letras(o.amount_total)"/>
+                            <span t-esc="a_letras(o.amount_total)"/>
                         </div>
                         
                         <div style="position: absolute; top: 23.4cm; left: 22cm; font-size: 75%; font-weight:bold">
