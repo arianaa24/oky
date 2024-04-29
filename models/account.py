@@ -27,13 +27,3 @@ class AccountMove(models.Model):
                 data = response.read()
                 rec.write({'pdf_fel_file':b64encode(data), 'pdf_fel_name':file_name})
         return res
-
-    def post(self):
-        res = super(AccountMove, self).post()
-        for rec in res:
-            if rec.pdf_fel:
-                file_name = str(rec.partner_id.state_id.name) + ', ' + str(rec.partner_id.name) + ' - ' + str(rec.name) + '.pdf'
-                response = urllib.request.urlopen(rec.pdf_fel)
-                data = response.read()
-                rec.write({'pdf_fel_file':b64encode(data), 'pdf_fel_name':file_name})
-        return res
