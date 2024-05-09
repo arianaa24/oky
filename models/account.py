@@ -21,9 +21,12 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         res = super(AccountMove, self)._post(soft)
         for rec in res:
+            file_name = str(rec.partner_id.state_id.name) + ', ' + str(rec.partner_id.name) + ' - ' + str(rec.name) + '.pdf'
             if rec.pdf_fel:
-                file_name = str(rec.partner_id.state_id.name) + ', ' + str(rec.partner_id.name) + ' - ' + str(rec.name) + '.pdf'
                 response = urllib.request.urlopen(rec.pdf_fel)
                 data = response.read()
                 rec.write({'pdf_fel_file':b64encode(data), 'pdf_fel_name':file_name})
+            else:
+                report = self.env['ir.actions.report']._render_qweb_pdf("account.report_invoice_with_payments", rec.id)
+                rec.write({'pdf_fel_file':b64encode(report[0]), 'pdf_fel_name':file_name})
         return res
