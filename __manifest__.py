@@ -9,9 +9,9 @@
     'website': "http://www.aquih.com",
     'category': 'Uncategorized',
     'version': '1.0',
-    'depends': ['base', 'account', 'fel_infile'],
+    'depends': ['base', 'account'],
     'data': [
-        'views/account_views.xml',
+        #'views/account_views.xml',
         'views/res_partner_views.xml',
         'views/report.xml',
         'views/reporte_invoice1.xml',

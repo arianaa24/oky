@@ -2,32 +2,20 @@
 <odoo>
     <data>
 
-        <!--<record id="oky_view_account_journal_form" model="ir.ui.view">-->
-        <!--    <field name="name">oky.view_account_journal_form</field>-->
-        <!--    <field name="model">account.journal</field>-->
-        <!--    <field name="type">form</field>-->
-        <!--    <field name="inherit_id" ref="account.view_account_journal_form"/>-->
-        <!--    <field name="arch" type="xml">-->
-        <!--        <field name="currency_id" position="after">-->
-        <!--            <field name="cai"/>-->
-        <!--            <field name="numero_desde"/>-->
-        <!--            <field name="numero_hasta"/>-->
-        <!--            <field name="fecha_limite"/>-->
-        <!--        </field>-->
-        <!--    </field>-->
-        <!--</record>-->
-        
-        <record id="oky_view_move_form" model="ir.ui.view">
-            <field name="name">oky.account.move.form</field>
-            <field name="model">account.move</field>
-            <field name="inherit_id" ref="fel_infile.fel_infile_view_move_form"/>
+        <record id="oky_view_account_journal_form" model="ir.ui.view">
+            <field name="name">oky.view_account_journal_form</field>
+            <field name="model">account.journal</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
-                <field name="resultado_xml_fel" position="after">
-                    <field name="pdf_fel_name" invisible="1"/>
-                    <field name="pdf_fel_file" readonly="1" filename="pdf_fel_name"/>
+                <field name="currency_id" position="after">
+                    <field name="cai"/>
+                    <field name="numero_desde"/>
+                    <field name="numero_hasta"/>
+                    <field name="fecha_limite"/>
                 </field>
             </field>
         </record>
-
+        
     </data>
 </odoo>
