@@ -12,6 +12,7 @@
     'depends': ['base', 'account'],
     'data': [
         #'views/account_views.xml',
+        'security/ir.model.access.csv',
         'views/res_partner_views.xml',
         'views/report.xml',
         'views/reporte_invoice1.xml',
@@ -20,5 +21,6 @@
         'views/reporte_invoice4.xml',
         'views/reporte_invoice5.xml',
         'views/reporte_invoice6.xml',
+        'wizard/download_invoices_view.xml',
     ],
 }

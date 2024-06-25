@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="view_oky_download_invoices" model="ir.ui.view">
+          <field name="name">download.invoices</field>
+          <field name="model">oky.download_invoices</field>
+          <field name="arch" type="xml">
+            <form string="Imprimir Facturas Individuales">
+                <group>
+                    <field name="account_move_ids" widget="many2many_tags"/>
+                </group>
+                <group>
+                    <field name="name" invisible="1"/>
+                    <field name="archivo" readonly="1" filename="name"/>
+                </group>
+                <footer>
+                    <button name="print_zip_file" string="Archivo zip"  type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+          </field>
+    </record>
+    
+    <record id="action_oky_download_invoices" model="ir.actions.server">
+        <field name="name">Descargar facturas individuales</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = {
+                'type': 'ir.actions.act_window',
+                'res_model': 'oky.download_invoices',
+                'target': 'new',
+                'views': [(env.ref('oky.view_oky_download_invoices').id, 'form')],
+                'context': {'default_account_move_ids': [(6, 0, records.ids)]}
+            }
+        </field>
+    </record>
+</odoo>
